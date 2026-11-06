@@ -1,429 +1,733 @@
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Aya Robux - Top Up</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>WAKDIKZ GIG ROBUX</title>
 
 <style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+*{box-sizing:border-box;margin:0;padding:0}
+
+:root{
+--pink:#ff69c7;
+--purple:#a855f7;
+--light:#ffe7fa;
+--dark:#230b2d;
 }
 
-body {
-    background: #080808;
-    color: white;
-    font-family: Arial, sans-serif;
-    min-height: 100vh;
+body{
+font-family:Arial,sans-serif;
+color:white;
+min-height:100vh;
+background:linear-gradient(135deg,#180923,#4b145e,#b52b94,#5425a6);
+background-size:300% 300%;
+animation:bg 12s ease infinite;
+overflow-x:hidden;
+}
+
+@keyframes bg{
+0%{background-position:0% 50%}
+50%{background-position:100% 50%}
+100%{background-position:0% 50%}
+}
+
+/* MATRIX */
+
+#matrix{
+position:fixed;
+inset:0;
+width:100%;
+height:100%;
+z-index:-1;
+opacity:.28;
+pointer-events:none;
 }
 
 /* HEADER */
 
-header {
-    text-align: center;
-    padding: 35px 15px;
-    background: linear-gradient(180, #181818, #080808);
+header{
+text-align:center;
+padding:35px 15px 25px;
 }
 
-header h1 {
-    font-size: 32px;
-    font-weight: 900;
-    color: #ff3030;
-    letter-spacing: 2px;
+.logo{
+width:70px;
+height:70px;
+margin:auto;
+display:grid;
+place-items:center;
+transform:rotate(-10deg);
+border:3px solid white;
+border-radius:18px;
+background:linear-gradient(135deg,#ff68ca,#9e4aff);
+box-shadow:0 0 30px #ff63d9;
 }
 
-header p {
-    color: #999;
-    margin-top: 10px;
-    font-size: 13px;
+.logo svg{
+width:48px;
+height:48px;
 }
 
-/* CONTAINER */
-
-.container {
-    max-width: 900px;
-    margin: auto;
-    padding: 20px;
+header h1{
+margin-top:20px;
+font-size:clamp(24px,6vw,38px);
+font-weight:900;
+background:linear-gradient(90deg,#fff,#ff9de7,#d7a8ff);
+-webkit-background-clip:text;
+color:transparent;
+text-shadow:0 0 25px #ff5bd5;
 }
 
-.section-title {
-    font-size: 20px;
-    margin-bottom: 20px;
+header p{
+margin-top:10px;
+color:#ffd5f5;
+font-size:12px;
+letter-spacing:3px;
 }
 
-/* GRID 3 X 3 */
+/* CONTENT */
 
-.robux-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 15px;
+.container{
+width:100%;
+max-width:700px;
+margin:auto;
+padding:15px;
 }
 
-/* CARD */
-
-.robux-card {
-    background: #151515;
-    border: 1px solid #292929;
-    border-radius: 14px;
-    padding: 20px 10px;
-    text-align: center;
-    cursor: pointer;
-    transition: 0.2s;
-    position: relative;
+.panel{
+padding:20px;
+margin-bottom:18px;
+border:1px solid #ffb1ef66;
+border-radius:22px;
+background:#220d31c9;
+backdrop-filter:blur(12px);
+box-shadow:0 0 25px #e95aff25;
 }
 
-.robux-card:hover {
-    border-color: #ff3030;
-    transform: translateY(-3px);
+.title{
+font-size:17px;
+margin-bottom:17px;
+color:#ffd6f7;
 }
 
-.robux-card.selected {
-    border: 2px solid #ff3030;
-    background: #241111;
+/* CUSTOM */
+
+.custom{
+width:100%;
+padding:20px;
+border-radius:18px;
+border:1px solid #ffb7f5;
+background:linear-gradient(135deg,#ff4bc4,#a64dff,#5423a8);
+color:white;
+cursor:pointer;
+text-align:left;
+box-shadow:0 0 25px #ff53dd55;
+transition:.2s;
 }
 
-.robux-icon {
-    font-size: 30px;
-    margin-bottom: 12px;
+.custom:hover{
+transform:translateY(-3px);
+box-shadow:0 0 35px #ff53dd;
 }
 
-.robux-card h3 {
-    font-size: 17px;
-    margin-bottom: 8px;
+.custom strong{
+display:block;
+font-size:19px;
+margin-bottom:7px;
 }
 
-.robux-card p {
-    color: #ff4545;
-    font-weight: bold;
-    font-size: 14px;
+.custom span{
+font-size:12px;
+opacity:.85;
 }
 
-.robux-card small {
-    display: block;
-    color: #888;
-    margin-top: 8px;
+/* GRID */
+
+.grid{
+display:grid;
+grid-template-columns:repeat(3,minmax(0,1fr));
+gap:11px;
 }
 
-.check {
-    position: absolute;
-    top: 8px;
-    right: 10px;
-    color: #ff3030;
-    display: none;
+.card{
+position:relative;
+padding:18px 5px;
+text-align:center;
+border-radius:17px;
+border:1px solid #f9a8ff50;
+background:linear-gradient(145deg,#39164c,#241032);
+cursor:pointer;
+transition:.2s;
 }
 
-.selected .check {
-    display: block;
+.card:hover{
+transform:translateY(-3px);
+border-color:#ff8ce5;
 }
 
-/* ORDER */
-
-.order-box {
-    margin-top: 25px;
-    padding: 20px;
-    background: #151515;
-    border: 1px solid #292929;
-    border-radius: 14px;
+.card.selected{
+border:2px solid #ff7be1;
+background:linear-gradient(145deg,#822b83,#45266e);
+box-shadow:0 0 20px #ff5bd855;
 }
 
-.order-box h3 {
-    margin-bottom: 15px;
+.card h3{
+font-size:13px;
+margin-top:12px;
 }
 
-input {
-    width: 100%;
-    padding: 14px;
-    margin-bottom: 12px;
-    background: #080808;
-    border: 1px solid #333;
-    border-radius: 8px;
-    color: white;
-    outline: none;
+.card p{
+font-size:11px;
+color:#e9baff;
+margin-top:7px;
 }
 
-input:focus {
-    border-color: #ff3030;
+.card .check{
+display:none;
+position:absolute;
+top:7px;
+right:8px;
+color:#ffb6ed;
 }
 
-.selected-info {
-    margin: 15px 0;
-    color: #aaa;
-    font-size: 14px;
+.card.selected .check{
+display:block;
 }
 
-.selected-info span {
-    color: white;
-    font-weight: bold;
+/* ROBUX SVG */
+
+.robux{
+width:42px;
+height:42px;
+margin:auto;
+display:grid;
+place-items:center;
+background:linear-gradient(135deg,#ff72d2,#a05cff);
+border-radius:12px;
+box-shadow:0 0 15px #ff72d266;
 }
 
-.order-button {
-    width: 100%;
-    padding: 15px;
-    background: #ff3030;
-    border: none;
-    border-radius: 9px;
-    color: white;
-    font-size: 15px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: 0.2s;
+.robux svg{
+width:29px;
+height:29px;
 }
 
-.order-button:hover {
-    background: #d91f1f;
+/* FORM */
+
+input{
+width:100%;
+padding:15px;
+margin-top:12px;
+border-radius:12px;
+border:1px solid #bd77d9;
+background:#160b23;
+color:white;
+outline:none;
 }
 
-footer {
-    text-align: center;
-    padding: 30px 10px;
-    color: #555;
-    font-size: 12px;
+input:focus{
+border-color:#ff8be8;
+box-shadow:0 0 12px #ff5bdb55;
+}
+
+input::placeholder{
+color:#bd9acb;
+}
+
+.btn{
+width:100%;
+padding:15px;
+margin-top:14px;
+border:0;
+border-radius:13px;
+background:linear-gradient(90deg,#ff58bf,#b05aff);
+color:white;
+font-weight:bold;
+cursor:pointer;
+box-shadow:0 0 20px #ff52ce40;
+}
+
+.btn:active{
+transform:scale(.98);
+}
+
+.info{
+margin-top:15px;
+padding:15px;
+border-radius:12px;
+background:#ffffff0b;
+color:#e6c9f4;
+font-size:13px;
+line-height:2;
+}
+
+.info b{
+color:#ffb4e9;
+}
+
+/* DONE MODAL */
+
+.modal{
+position:fixed;
+inset:0;
+display:none;
+align-items:center;
+justify-content:center;
+padding:20px;
+background:#100719e8;
+backdrop-filter:blur(10px);
+z-index:10;
+}
+
+.modal.show{
+display:flex;
+}
+
+.done-box{
+width:100%;
+max-width:330px;
+padding:30px 20px;
+text-align:center;
+border:1px solid #ffffff30;
+border-radius:25px;
+background:linear-gradient(145deg,#29113c,#421650);
+box-shadow:0 0 50px #d34cff35;
+animation:pop .35s ease;
+}
+
+@keyframes pop{
+from{transform:scale(.7);opacity:0}
+to{transform:scale(1);opacity:1}
+}
+
+.check-circle{
+width:85px;
+height:85px;
+margin:0 auto 20px;
+border-radius:50%;
+background:#12c980;
+display:grid;
+place-items:center;
+box-shadow:0 0 35px #12c98055;
+}
+
+.check-circle svg{
+width:48px;
+height:48px;
+stroke:white;
+stroke-width:5;
+fill:none;
+stroke-linecap:round;
+stroke-linejoin:round;
+stroke-dasharray:60;
+stroke-dashoffset:60;
+animation:draw .6s .2s forwards;
+}
+
+@keyframes draw{
+to{stroke-dashoffset:0}
+}
+
+.done-box h2{
+color:#91ffd1;
+margin-bottom:10px;
+}
+
+.done-box p{
+font-size:13px;
+color:#e8d5f5;
+line-height:1.7;
+}
+
+.done-box .btn{
+background:linear-gradient(90deg,#14bd7b,#21d69a);
+}
+
+footer{
+text-align:center;
+padding:25px;
+color:#e7b7f5;
+font-size:11px;
 }
 
 /* MOBILE */
 
-@media (max-width: 500px) {
-
-    .container {
-        padding: 15px;
-    }
-
-    .robux-grid {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 9px;
-    }
-
-    .robux-card {
-        padding: 18px 5px;
-        border-radius: 10px;
-    }
-
-    .robux-icon {
-        font-size: 24px;
-    }
-
-    .robux-card h3 {
-        font-size: 13px;
-    }
-
-    .robux-card p {
-        font-size: 12px;
-    }
-
-    .robux-card small {
-        font-size: 10px;
-    }
-
-    header h1 {
-        font-size: 27px;
-    }
+@media(max-width:400px){
+.container{padding:10px}
+.panel{padding:15px}
+.grid{gap:8px}
+.card{padding:15px 3px}
+.card h3{font-size:11px}
+.card p{font-size:10px}
+.robux{width:37px;height:37px}
 }
 </style>
 </head>
 
 <body>
 
-<header>
-    <!-- GANTI NAMA STORE DI SINI -->
-    <h1>AYA ROBUX</h1>
+<canvas id="matrix"></canvas>
 
-    <p>TOP UP ROBUX • FAST SERVICE</p>
+<header>
+
+<div class="logo">
+
+<!-- CUSTOM ROBUX LOGO -->
+
+<svg viewBox="0 0 100 100" fill="white">
+<g transform="rotate(18 50 50)">
+<path d="M18 18L82 18L82 82L18 82Z"/>
+<path d="M39 39L61 39L61 61L39 61Z"
+fill="#9d48cf"/>
+</g>
+</svg>
+
+</div>
+
+<h1>WAKDIKZ GIG ROBUX</h1>
+
+<p>✦ PREMIUM ROBUX STORE ✦</p>
+
 </header>
 
 <div class="container">
 
-    <h2 class="section-title">
-        Pilih Nominal Robux
-    </h2>
+<!-- CUSTOM PAKET -->
 
-    <div class="robux-grid" id="robuxGrid">
+<div class="panel">
 
-        <!-- PILIHAN 1 -->
-        <div class="robux-card" onclick="selectRobux(this, 100, 10000)">
-            <span class="check">✓</span>
-            <div class="robux-icon">🌸</div>
-            <h3>100 Robux</h3>
-            <p>Rp 10.000</p>
-            <small>Regular</small>
-        </div>
+<h2 class="title">✧ CUSTOM ROBUX ✧</h2>
 
-        <!-- PILIHAN 2 -->
-        <div class="robux-card" onclick="selectRobux(this, 220, 20000)">
-            <span class="check">✓</span>
-            <div class="robux-icon">🌸</div>
-            <h3>220 Robux</h3>
-            <p>Rp 20.000</p>
-            <small>Regular</small>
-        </div>
+<button class="custom" onclick="customPackage()">
 
-        <!-- PILIHAN 3 -->
-        <div class="robux-card" onclick="selectRobux(this, 410, 30000)">
-            <span class="check">✓</span>
-            <div class="robux-icon">🌸</div>
-            <h3>410 Robux</h3>
-            <p>Rp 38.000</p>
-            <small>Regular</small>
-        </div>
+<strong>💎 CUSTOM YOUR ROBUX</strong>
 
-        <!-- PILIHAN 4 -->
-        <div class="robux-card" onclick="selectRobux(this, 320, 40000)">
-            <span class="check">✓</span>
-            <div class="robux-icon">🌸</div>
-            <h3>600 Robux</h3>
-            <p>Rp 50.000</p>
-            <small>Regular</small>
-        </div>
+<span>Atur jumlah Robux sesuai keinginan</span>
 
-        <!-- PILIHAN 5 -->
-        <div class="robux-card" onclick="selectRobux(this, 1000, 60000)">
-            <span class="check">✓</span>
-            <div class="robux-icon">🌸</div>
-            <h3>1000 Robux</h3>
-            <p>Rp 110.000</p>
-            <small>Regular</small>
-        </div>
+</button>
 
-        <!-- PILIHAN 6 -->
-        <div class="robux-card" onclick="selectRobux(this, 1500, 100000)">
-            <span class="check">✓</span>
-            <div class="robux-icon">🌸</div>
-            <h3>1500 Robux</h3>
-            <p>Rp 170.000</p>
-            <small>Regular</small>
-        </div>
+<input
+id="customAmount"
+type="number"
+min="1"
+max="1000000"
+placeholder="Masukkan jumlah Robux custom"
+>
 
-        <!-- PILIHAN 7 -->
-        <div class="robux-card" onclick="selectRobux(this, 2100, 120000)">
-            <span class="check">✓</span>
-            <div class="robux-icon">🌸</div>
-            <h3>2100 Robux</h3>
-            <p>Rp 220.000</p>
-            <small>Regular</small>
-        </div>
+</div>
 
-        <!-- PILIHAN 8 -->
-        <div class="robux-card" onclick="selectRobux(this, 5000, 240000)">
-            <span class="check">✓</span>
-            <div class="robux-icon">🌸</div>
-            <h3>5000 Robux</h3>
-            <p>Rp 640.000</p>
-            <small>VIP stok terbatasr</small>
-        </div>
+<!-- PAKET -->
 
-        <!-- PILIHAN 9 -->
-        <div class="robux-card" onclick="selectRobux(this, 6000, 600000)">
-            <span class="check">✓</span>
-            <div class="robux-icon">🌸</div>
-            <h3>6000 Robux</h3>
-            <p>Rp 700.000</p>
-            <small>Regular</small>
-        </div>
+<div class="panel">
 
-    </div>
+<h2 class="title">♡ PILIH PAKET ROBUX ♡</h2>
 
-    <!-- ORDER -->
+<div class="grid" id="grid"></div>
 
-    <div class="order-box">
+</div>
 
-        <h3>Detail Pesanan</h3>
+<!-- USERNAME -->
 
-        <input
-            type="text"
-            id="username"
-            placeholder="Username Roblox"
-        >
+<div class="panel">
 
-        <div class="selected-info">
-            Paket:
-            <span id="selectedPackage">Belum dipilih</span>
-            <br><br>
-            Total:
-            <span id="selectedPrice">Rp 0</span>
-        </div>
+<h2 class="title">🎀 DETAIL PESANAN</h2>
 
-        <button class="order-button" onclick="orderRobux()">
-            ORDER SEKARANG
-        </button>
+<input
+id="username"
+type="text"
+placeholder="Masukkan username Roblox"
+autocomplete="off"
+>
 
-    </div>
+<div class="info">
+
+Robux:
+<b id="amount">Belum dipilih</b>
+
+<br>
+
+Username:
+<b id="userPreview">Belum diisi</b>
+
+<br>
+
+Status:
+<b>Menunggu pengiriman</b>
+
+</div>
+
+<button class="btn" onclick="sendOrder()">
+♡ KIRIM PESANAN ♡
+</button>
+
+</div>
 
 </div>
 
 <footer>
-    © 2026 Aya Robux • All Rights Reserved
+♡ WAKDIKZ GIG ROBUX ♡
+<br><br>
+PINK PURPLE PREMIUM EDITION
 </footer>
+
+<!-- DONE ANIMATION -->
+
+<div class="modal" id="modal">
+
+<div class="done-box">
+
+<div class="check-circle">
+
+<svg viewBox="0 0 50 50">
+<path d="M10 26L21 37L41 14"/>
+</svg>
+
+</div>
+
+<h2>DONE!</h2>
+
+<p id="doneText"></p>
+
+<p style="margin-top:12px;color:#ffb5eb">
+Pesanan tersimpan di tampilan ini.
+</p>
+
+<button class="btn" onclick="closeModal()">
+OK ♡
+</button>
+
+</div>
+
+</div>
 
 <script>
 
-// ================================
-// KONFIGURASI STORE
-// ================================
+// ==============================
+// PAKET
+// ==============================
 
-// GANTI NOMOR WA ADMIN
-// Format: 62xxxxxxxxxx
-const whatsappAdmin = "6283165326481;
+const packages = [
+100,
+200,
+300,
+500,
+1000,
+2000
+];
 
-// ================================
+let selected = null;
 
-let selectedRobux = 0;
-let selectedPrice = 0;
+const grid = document.getElementById("grid");
 
-function formatRupiah(number) {
-    return "Rp " + number.toLocaleString("id-ID");
+const logo = `
+<div class="robux">
+<svg viewBox="0 0 100 100" fill="white">
+<g transform="rotate(18 50 50)">
+<path d="M18 18H82V82H18Z"/>
+<path d="M39 39H61V61H39Z" fill="#a54dd5"/>
+</g>
+</svg>
+</div>
+`;
+
+packages.forEach(amount => {
+
+const card = document.createElement("div");
+
+card.className = "card";
+
+card.innerHTML = `
+<span class="check">✓</span>
+${logo}
+<h3>${amount.toLocaleString("id-ID")} Robux</h3>
+<p>♡ ROBUX PACKAGE</p>
+`;
+
+card.onclick = () => {
+
+document.querySelectorAll(".card").forEach(c =>
+c.classList.remove("selected")
+);
+
+card.classList.add("selected");
+
+selected = amount;
+
+document.getElementById("customAmount").value = "";
+
+updatePreview();
+
+};
+
+grid.appendChild(card);
+
+});
+
+// ==============================
+// CUSTOM PAKET
+// ==============================
+
+function customPackage(){
+
+const amount = Number(
+document.getElementById("customAmount").value
+);
+
+if(!Number.isInteger(amount) || amount < 1 || amount > 1000000){
+
+alert("Masukkan jumlah Robux 1 sampai 1.000.000");
+
+return;
+
 }
 
-function selectRobux(element, robux, price) {
+document.querySelectorAll(".card").forEach(c =>
+c.classList.remove("selected")
+);
 
-    document.querySelectorAll(".robux-card").forEach(card => {
-        card.classList.remove("selected");
-    });
+selected = amount;
 
-    element.classList.add("selected");
-
-    selectedRobux = robux;
-    selectedPrice = price;
-
-    document.getElementById("selectedPackage").textContent =
-        robux.toLocaleString("id-ID") + " Robux";
-
-    document.getElementById("selectedPrice").textContent =
-        formatRupiah(price);
+updatePreview();
 
 }
 
-function orderRobux() {
+// ==============================
+// PREVIEW
+// ==============================
 
-    const username = document.getElementById("username").value.trim();
+function updatePreview(){
 
-    if (!username) {
-        alert("Masukkan username Roblox terlebih dahulu!");
-        return;
-    }
+document.getElementById("amount").textContent =
+selected ?
+selected.toLocaleString("id-ID") + " Robux" :
+"Belum dipilih";
 
-    if (selectedRobux === 0) {
-        alert("Pilih paket Robux terlebih dahulu!");
-        return;
-    }
-
-    const message =
-        "Halo Aya Robux!\n\n" +
-        "Saya ingin order Robux.\n\n" +
-        "Username: " + username + "\n" +
-        "Paket: " + selectedRobux + " Robux\n" +
-        "Harga: " + formatRupiah(selectedPrice) + "\n\n" +
-        "Mohon diproses.";
-
-    const url =
-        "https://wa.me/" +
-        whatsappAdmin +
-        "?text=" +
-        encodeURIComponent(message);
-
-    window.open(url, "_blank");
+document.getElementById("userPreview").textContent =
+document.getElementById("username").value.trim() ||
+"Belum diisi";
 
 }
+
+document.getElementById("username").addEventListener(
+"input",
+updatePreview
+);
+
+// ==============================
+// SEND - VISUAL ONLY
+// ==============================
+
+function sendOrder(){
+
+const username =
+document.getElementById("username").value.trim();
+
+if(!username){
+
+alert("Masukkan username Roblox dulu!");
+
+return;
+
+}
+
+if(!selected){
+
+alert("Pilih paket Robux dulu!");
+
+return;
+
+}
+
+// SIMULASI KONFIRMASI.
+// TIDAK MENGIRIM KE WA.
+// TIDAK MEMPROSES PEMBAYARAN.
+// TIDAK MENGIRIM ROBUX.
+
+document.getElementById("doneText").textContent =
+"Username: " + username +
+" | Paket: " +
+selected.toLocaleString("id-ID") +
+" Robux";
+
+document.getElementById("modal").classList.add("show");
+
+}
+
+function closeModal(){
+
+document.getElementById("modal").classList.remove("show");
+
+}
+
+// ==============================
+// PINK MATRIX
+// ==============================
+
+const canvas = document.getElementById("matrix");
+
+const ctx = canvas.getContext("2d");
+
+let width;
+let height;
+let drops;
+
+const chars =
+"♡✧0123456789ROBLOXWAKDIKZ";
+
+function resize(){
+
+width = canvas.width = window.innerWidth;
+
+height = canvas.height = window.innerHeight;
+
+drops = Array(
+Math.ceil(width / 18)
+).fill(1);
+
+}
+
+window.addEventListener("resize",resize);
+
+resize();
+
+function drawMatrix(){
+
+ctx.fillStyle = "rgba(25, 5, 35, 0.12)";
+
+ctx.fillRect(0,0,width,height);
+
+ctx.font = "15px monospace";
+
+for(let i = 0; i < drops.length; i++){
+
+const char =
+chars[Math.floor(Math.random()*chars.length)];
+
+const x = i * 18;
+
+const y = drops[i] * 18;
+
+ctx.fillStyle =
+Math.random() > .7 ?
+"#ffb6f4" :
+"#e94fc7";
+
+ctx.fillText(char,x,y);
+
+if(y > height && Math.random() > .975){
+
+drops[i] = 0;
+
+}
+
+drops[i]++;
+
+}
+
+}
+
+setInterval(drawMatrix,55);
 
 </script>
 
